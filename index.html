@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Digital Grow</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #070a22;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 12px;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 12px;
+
+      background: rgba(7, 10, 34, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 900;
+
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #ff00ff,
+        #00ccff
+      );
+
+      color: transparent;
+      background-clip: text;
+    }
+
+    .wallet {
+      background: #6425e8;
+      padding: 10px 16px;
+      border-radius: 14px;
+      font-weight: bold;
+    }
+
+    /* HERO */
+
+    .hero {
+      margin: 12px 0;
+      padding: 30px 15px;
+      text-align: center;
+
+      border-radius: 18px;
+
+      background:
+        radial-gradient(circle at top left, #ff00e6, transparent 35%),
+        radial-gradient(circle at bottom right, #0077ff, transparent 40%),
+        #11163c;
+
+      border: 1px solid #4054b8;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin: 5px 0;
+
+      background: linear-gradient(
+        90deg,
+        #fff,
+        #ff00e6,
+        #00d9ff
+      );
+
+      color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: #cbd4ff;
+      font-size: 15px;
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .feature {
+      background: #101942;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    /* BOX */
+
+    .box {
+      background: #0e1535;
+      border: 1px solid #334b92;
+      border-radius: 16px;
+      padding: 16px;
+      margin: 12px 0;
+    }
+
+    /* SERVICES */
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .service {
+      background: #111e47;
+      border: 1px solid #35519a;
+
+      color: white;
+
+      border-radius: 12px;
+      padding: 14px;
+
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .service.active {
+      border-color: #00eaff;
+      box-shadow: 0 0 14px rgba(0, 234, 255, 0.3);
+    }
+
+    .service-title {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .small {
+      color: #9eabd0;
+      font-size: 12px;
+    }
+
+    /* RATES */
+
+    .rates {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
+    }
+
+    .rate {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      background: #111e47;
+      color: white;
+
+      border: 1px solid #35519a;
+      border-radius: 11px;
+
+      padding: 13px;
+
+      cursor: pointer;
+    }
+
+    .rate.selected {
+      border-color: #00eaff;
+      box-shadow: 0 0 12px rgba(0, 234, 255, 0.3);
+    }
+
+    .price {
+      color: #65eaff;
+      font-weight: bold;
+    }
+
+    /* INPUT */
+
+    input,
+    select {
+      width: 100%;
+
+      padding: 13px;
+      margin: 7px 0 13px;
+
+      border-radius: 10px;
+
+      background: #080f2c;
+      color: white;
+
+      border: 1px solid #38508f;
+      outline: none;
+    }
+
+    label {
+      font-size: 14px;
+      color: #c5ccef;
+    }
+
+    /* BUTTON */
+
+    button {
+      font-family: inherit;
+    }
+
+    .btn {
+      width: 100%;
+
+      border: none;
+      border-radius: 12px;
+
+      padding: 14px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #e500ff,
+          #176dff
+        );
+
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+
+      cursor: pointer;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    /* TOTAL */
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 15px;
+
+      background: #08152f;
+      border-radius: 12px;
+
+      margin: 12px 0;
+    }
+
+    .total-price {
+      font-size: 23px;
+      color: #6eeaff;
+      font-weight: bold;
+    }
+
+    /* NAVIGATION */
+
+    .bottom-nav {
+      position: sticky;
+      bottom: 0;
+
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+
+      gap: 8px;
+
+      padding: 10px;
+
+      background: rgba(7, 10, 34, 0.96);
+
+      border-top: 1px solid #293c75;
+    }
+
+    .nav-btn {
+      background: #111e47;
+      color: white;
+
+      border: 1px solid #35519a;
+      border-radius: 12px;
+
+      padding: 12px;
+
+      cursor: pointer;
+    }
+
+    .create {
+      background:
+        linear-gradient(
+          90deg,
+          #e500ff,
+          #176dff
+        );
+
+      font-weight: bold;
+    }
+
+    /* MODAL */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+      inset: 0;
+
+      z-index: 100;
+
+      background: rgba(0, 0, 0, 0.8);
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 12px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(600px, 100%);
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      background: #0e1535;
+
+      border: 1px solid #4662ad;
+      border-radius: 16px;
+
+      padding: 18px;
+    }
+
+    .close {
+      float: right;
+
+      background: #ff3158;
+      color: white;
+
+      border: none;
+      border-radius: 8px;
+
+      padding: 7px 12px;
+
+      cursor: pointer;
+    }
+
+    /* ORDER */
+
+    .order {
+      background: #101a40;
+
+      border: 1px solid #304b91;
+
+      border-radius: 12px;
+
+      padding: 13px;
+
+      margin: 9px 0;
+    }
+
+    .status {
+      display: inline-block;
+
+      padding: 5px 9px;
+
+      border-radius: 20px;
+
+      background: #168b55;
+
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* QR */
+
+    .qr {
+      display: block;
+
+      width: 280px;
+      max-width: 100%;
+
+      margin: 15px auto;
+
+      background: white;
+
+      padding: 7px;
+
+      border-radius: 12px;
+    }
+
+    .warning {
+      background: #382b0d;
+
+      color: #ffe49b;
+
+      padding: 11px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+
+      margin: 10px 0;
+    }
+
+    /* ADMIN */
+
+    .admin-item {
+      background: #101a40;
+
+      border: 1px solid #304b91;
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      margin: 8px 0;
+    }
+
+    @media(max-width:600px) {
+
+      .service-grid,
+      .rates {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">
+      Digital Grow
+    </div>
+
+    <div class="wallet">
+      ₹<span id="balance">0.00</span>
+    </div>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h1>Digital Grow</h1>
+
+    <p>
+      Grow Your Social Presence
+    </p>
+
+    <div class="features">
+
+      <div class="feature">
+        🛡️ Safe & Secure
+      </div>
+
+      <div class="feature">
+        ⚡ Fast Start
+      </div>
+
+      <div class="feature">
+        🎧 Support
+      </div>
+
+      <div class="feature">
+        💎 Best Prices
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+
+  <div class="box">
+
+    <h2>Instagram Services</h2>
+
+    <div
+      id="serviceList"
+      class="service-grid">
+    </div>
+
+  </div>
+
+
+  <!-- RATES -->
+
+  <div class="box">
+
+    <h2 id="rateTitle">
+      Reel Views Rates
+    </h2>
+
+    <div
+      id="rateList"
+      class="rates">
+    </div>
+
+  </div>
+
+
+  <!-- CREATE ORDER -->
+
+  <div class="box">
+
+    <h2>Create Order</h2>
+
+    <label>
+      Select Service
+    </label>
+
+    <select id="serviceSelect"></select>
+
+
+    <label>
+      Select Package
+    </label>
+
+    <select id="packageSelect"></select>
+
+
+    <label>
+      Instagram Post / Reel / Story URL
+    </label>
+
+    <input
+      id="instagramUrl"
+      type="url"
+      placeholder="https://www.instagram.com/...">
+
+
+    <div class="total">
+
+      <span>
+        Order Total
+      </span>
+
+      <span
+        id="orderTotal"
+        class="total-price">
+        ₹0
+      </span>
+
+    </div>
+
+
+    <button
+      class="btn"
+      onclick="createOrder()">
+
+      Create Order
+
+    </button>
+
+  </div>
+
+
+  <!-- MY ORDERS -->
+
+  <div class="box">
+
+    <h2>
+      My Orders
+    </h2>
+
+    <div id="ordersList">
+      No orders yet.
+    </div>
+
+  </div>
+
+
+  <!-- BOTTOM NAV -->
+
+  <div class="bottom-nav">
+
+    <button
+      class="nav-btn"
+      onclick="showOrders()">
+
+      📦 Orders
+
+    </button>
+
+    <button
+      class="nav-btn create"
+      onclick="scrollToOrder()">
+
+      ＋ Create Order
+
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="openMenu()">
+
+      ☰ Menu
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+  id="modal"
+  class="modal">
+
+  <div
+    id="modalContent"
+    class="modal-box">
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DIGITAL GROW DATA
+===================================================== */
+
+const services = {
+
+  "Reel Views": {
+
+    unit: "views",
+
+    rates: {
+
+      "1K": 4,
+      "2K": 8,
+      "5K": 18,
+      "10K": 30,
+      "50K": 80,
+      "100K": 110,
+      "500K": 500,
+      "1M": 900
+
+    }
+
+  },
+
+
+  "Post Views": {
+
+    unit: "views",
+
+    rates: {
+
+      "1K": 5,
+      "2K": 9,
+      "5K": 25,
+      "10K": 40,
+      "20K": 80,
+      "50K": 190,
+      "100K": 360,
+      "500K": 1700,
+      "1M": 3300
+
+    }
+
+  },
+
+
+  "Story Views": {
+
+    unit: "views",
+
+    rates: {
+
+      "300": 22,
+      "500": 35,
+      "1K": 70,
+      "2K": 120,
+      "5K": 300,
+      "10K": 580
+
+    }
+
+  },
+
+
+  "Likes": {
+
+    unit: "likes",
+
+    rates: {
+
+      "100": 5,
+      "300": 12,
+      "500": 17,
+      "1K": 35,
+      "2K": 60,
+      "5K": 140,
+      "10K": 280,
+      "20K": 550,
+      "50K": 1300,
+      "100K": 2500,
+      "500K": 11950,
+      "1M": 22950
+
+    }
+
+  },
+
+
+  "Shares": {
+
+    unit: "shares",
+
+    rates: {
+
+      "1K": 13,
+      "2K": 24,
+      "5K": 52,
+      "10K": 95,
+      "20K": 190,
+      "50K": 450,
+      "100K": 860,
+      "500K": 4150,
+      "1M": 7940
+
+    }
+
+  }
+
+};
+
+
+/* =====================================================
+   APP STATE
+===================================================== */
+
+let currentService = "Reel Views";
+
+let currentPackage = "1K";
+
+let balance =
+  Number(localStorage.getItem("dg_balance")) || 0;
+
+let orders =
+  JSON.parse(
+    localStorage.getItem("dg_orders") || "[]"
+  );
+
+let deposits =
+  JSON.parse(
+    localStorage.getItem("dg_deposits") || "[]"
+  );
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function money(number) {
+
+  return Number(number).toLocaleString(
+    "en-IN",
+    {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }
+  );
+
+}
+
+
+function saveData() {
+
+  localStorage.setItem(
+    "dg_balance",
+    balance
+  );
+
+  localStorage.setItem(
+    "dg_orders",
+    JSON.stringify(orders)
+  );
+
+  localStorage.setItem(
+    "dg_deposits",
+    JSON.stringify(deposits)
+  );
+
+  document.getElementById(
+    "balance"
+  ).textContent = money(balance);
+
+}
+
+
+/* =====================================================
+   RENDER SERVICES
+===================================================== */
+
+function renderServices() {
+
+  const list =
+    document.getElementById(
+      "serviceList"
+    );
+
+  list.innerHTML = "";
+
+
+  Object.keys(services).forEach(
+    service => {
+
+      const button =
+        document.createElement("button");
+
+      button.className =
+        "service " +
+        (
+          service === currentService
+            ? "active"
+            : ""
+        );
+
+      button.innerHTML = `
+
+        <div class="service-title">
+          ${service}
+        </div>
+
+        <div class="small">
+          ${
+            Object.keys(
+              services[service].rates
+            ).length
+          }
+          packages
+        </div>
+
+      `;
+
+      button.onclick = function() {
+
+        currentService = service;
+
+        currentPackage =
+          Object.keys(
+            services[service].rates
+          )[0];
+
+        render();
+
+      };
+
+
+      list.appendChild(button);
+
+    }
+
+  );
+
+}
+
+
+/* =====================================================
+   RENDER RATES
+===================================================== */
+
+function renderRates() {
+
+  const title =
+    document.getElementById(
+      "rateTitle"
+    );
+
+  title.textContent =
+    currentService +
+    " Rates";
+
+
+  const list =
+    document.getElementById(
+      "rateList"
+    );
+
+  list.innerHTML = "";
+
+
+  Object.entries(
+    services[currentService].rates
+  ).forEach(
+    ([pack, price]) => {
+
+      const button =
+        document.createElement("button");
+
+      button.className =
+        "rate " +
+        (
+          pack === currentPackage
+            ? "selected"
+            : ""
+        );
+
+
+      button.innerHTML = `
+
+        <span>
+          ${pack}
+          ${services[currentService].unit}
+        </span>
+
+        <span class="price">
+          ₹${price}
+        </span>
+
+      `;
+
+
+      button.onclick = function() {
+
+        currentPackage = pack;
+
+        render();
+
+      };
+
+
+      list.appendChild(button);
+
+    }
+
+  );
+
+}
+
+
+/* =====================================================
+   SELECT BOXES
+===================================================== */
+
+function renderSelects() {
+
+  const serviceSelect =
+    document.getElementById(
+      "serviceSelect"
+    );
+
+  serviceSelect.innerHTML = "";
+
+
+  Object.keys(services).forEach(
+    service => {
+
+      const option =
+        document.createElement("option");
+
+      option.value = service;
+      option.textContent = service;
+
+      if (
+        service === currentService
+      ) {
+
+        option.selected = true;
+
+      }
+
+      serviceSelect.appendChild(option);
+
+    }
+
+  );
+
+
+  const packageSelect =
+    document.getElementById(
+      "packageSelect"
+    );
+
+  packageSelect.innerHTML = "";
+
+
+  Object.entries(
+    services[currentService].rates
+  ).forEach(
+    ([pack, price]) => {
+
+      const option =
+        document.createElement("option");
+
+      option.value = pack;
+
+      option.textContent =
+        `${pack} — ₹${price}`;
+
+      if (
+        pack === currentPackage
+      ) {
+
+        option.selected = true;
+
+      }
+
+      packageSelect.appendChild(option);
+
+    }
+
+  );
+
+
+  serviceSelect.onchange =
+    function() {
+
+      currentService =
+        this.value;
+
+      currentPackage =
+        Object.keys(
+          services[currentService].rates
+        )[0];
+
+      render();
+
+    };
+
+
+  packageSelect.onchange =
+    function() {
+
+      currentPackage =
+        this.value;
+
+      updateTotal();
+
+      renderRates();
+
+    };
+
+
+  updateTotal();
+
+}
+
+
+/* =====================================================
+   TOTAL
+===================================================== */
+
+function updateTotal() {
+
+  const price =
+    services[currentService]
+      .rates[currentPackage];
+
+
+  document.getElementById(
+    "orderTotal"
+  ).textContent =
+    "₹" + price;
+
+}
+
+
+/* =====================================================
+   MAIN RENDER
+===================================================== */
+
+function render() {
+
+  renderServices();
+
+  renderRates();
+
+  renderSelects();
+
+  renderOrders();
+
+  saveData();
+
+}
+
+
+/* =====================================================
+   CREATE ORDER
+===================================================== */
+
+function createOrder() {
+
+  const url =
+    document
+      .getElementById(
+        "instagramUrl"
+      )
+      .value
+      .trim();
+
+
+  if (!url) {
+
+    alert(
+      "Instagram URL enter kare."
+    );
+
+    return;
+
+  }
+
+
+  if (
+    !/^https?:\/\//i.test(url)
+  ) {
+
+    alert(
+      "Valid Instagram URL enter kare."
+    );
+
+    return;
+
+  }
+
+
+  const price =
+    services[currentService]
+      .rates[currentPackage];
+
+
+  if (balance < price) {
+
+    openAddFunds(
+      "Wallet balance kam hai. Pehle funds add kare."
+    );
+
+    return;
+
+  }
+
+
+  balance -= price;
+
+
+  const order = {
+
+    id:
+      "DG" +
+      Date.now()
+        .toString()
+        .slice(-8),
+
+    service:
+      currentService,
+
+    package:
+      currentPackage,
+
+    price:
+      price,
+
+    url:
+      url,
+
+    status:
+      "Pending",
+
+    date:
+      new Date()
+        .toLocaleString("en-IN")
+
+  };
+
+
+  orders.unshift(order);
+
+
+  document
+    .getElementById(
+      "instagramUrl"
+    )
+    .value = "";
+
+
+  saveData();
+
+  renderOrders();
+
+
+  alert(
+    "Order successfully created!\n\nOrder ID: " +
+    order.id
+  );
+
+}
+
+
+/* =====================================================
+   MY ORDERS
+===================================================== */
+
+function renderOrders() {
+
+  const list =
+    document.getElementById(
+      "ordersList"
+    );
+
+
+  if (!orders.length) {
+
+    list.innerHTML =
+      `<p class="small">
+        No orders yet.
+      </p>`;
+
+    return;
+
+  }
+
+
+  list.innerHTML = "";
+
+
+  orders.forEach(order => {
+
+    const div =
+      document.createElement(
+        "div"
+      );
+
+    div.className =
+      "order";
+
+
+    div.innerHTML = `
+
+      <b>
+        ${order.service}
+      </b>
+
+      <br>
+
+      Package:
+      ${order.package}
+
+      <br>
+
+      Price:
+      ₹${order.price}
+
+      <br><br>
+
+      <span class="status">
+        ${order.status}
+      </span>
+
+      <br><br>
+
+      <span class="small">
+        Order ID: ${order.id}
+      </span>
+
+      <br>
+
+      <span class="small">
+        ${order.url}
+      </span>
+
+      <br>
+
+      <span class="small">
+        ${order.date}
+      </span>
+
+    `;
+
+
+    list.appendChild(div);
+
+  });
+
+}
+
+
+/* =====================================================
+   ADD FUNDS
+===================================================== */
+
+function openAddFunds(message = "") {
+
+  showModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()">
+      X
+    </button>
+
+    <h2>
+      Add Funds
+    </h2>
+
+
+    ${
+      message
+      ?
+      `<div class="warning">
+        ${message}
+      </div>`
+      :
+      ""
+    }
+
+
+    <!--
+      IMPORTANT:
+      Put your PhonePe QR image
+      in the same folder as this file
+      and name it:
+
+      qr.png
+    -->
+
+    <img
+      class="qr"
+      src="qr.png"
+      alt="Payment QR">
+
+
+    <p class="small">
+      PhonePe / UPI se payment kare.
+    </p>
+
+
+    <label>
+      Amount
+    </label>
+
+    <input
+      id="depositAmount"
+      type="number"
+      min="1"
+      placeholder="Enter amount">
+
+
+    <label>
+      UTR / Transaction Reference
+    </label>
+
+    <input
+      id="depositUTR"
+      type="text"
+      placeholder="Enter UTR number">
+
+
+    <button
+      class="btn"
+      onclick="submitDeposit()">
+
+      Submit Payment
+
+    </button>
+
+
+    <div class="warning">
+
+      Payment submit karne ke baad
+      admin verification ke baad
+      wallet balance update hoga.
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   SUBMIT DEPOSIT
+===================================================== */
+
+function submitDeposit() {
+
+  const amount =
+    Number(
+      document.getElementById(
+        "depositAmount"
+      ).value
+    );
+
+
+  const utr =
+    document.getElementById(
+      "depositUTR"
+    ).value
+    .trim();
+
+
+  if (!amount || amount <= 0) {
+
+    alert(
+      "Valid amount enter kare."
+    );
+
+    return;
+
+  }
+
+
+  if (!utr) {
+
+    alert(
+      "UTR number enter kare."
+    );
+
+    return;
+
+  }
+
+
+  const deposit = {
+
+    id:
+      "DP" +
+      Date.now()
+        .toString()
+        .slice(-8),
+
+    amount:
+      amount,
+
+    utr:
+      utr,
+
+    status:
+      "Pending",
+
+    date:
+      new Date()
+        .toLocaleString("en-IN")
+
+  };
+
+
+  deposits.unshift(deposit);
+
+  saveData();
+
+
+  showModal(`
+
+    <h2>
+      Payment Submitted
+    </h2>
+
+    <p>
+      Deposit ID:
+      <b>${deposit.id}</b>
+    </p>
+
+    <p>
+      Amount:
+      <b>₹${amount}</b>
+    </p>
+
+    <p>
+      Status:
+      <b>Pending Verification</b>
+    </p>
+
+    <button
+      class="btn"
+      onclick="closeModal()">
+
+      Done
+
+    </button>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ADMIN PANEL
+===================================================== */
+
+function openAdmin() {
+
+  const pin =
+    prompt(
+      "Enter Admin PIN"
+    );
+
+
+  /*
+    DEMO ONLY.
+
+    Production website mein
+    client-side PIN use mat karna.
+    Server authentication required hai.
+  */
+
+  if (pin !== "2468") {
+
+    alert(
+      "Wrong Admin PIN"
+    );
+
+    return;
+
+  }
+
+
+  renderAdmin();
+
+}
+
+
+/* =====================================================
+   ADMIN RENDER
+===================================================== */
+
+function renderAdmin() {
+
+  let html = `
+
+    <button
+      class="close"
+      onclick="closeModal()">
+      X
+    </button>
+
+    <h2>
+      Digital Grow Admin
+    </h2>
+
+    <div class="warning">
+
+      Demo admin panel.
+      Real website mein secure
+      server-side authentication
+      use karein.
+
+    </div>
+
+
+    <h3>
+      Pending Deposits
+    </h3>
+
+  `;
+
+
+  if (!deposits.length) {
+
+    html += `
+      <p class="small">
+        No deposits.
+      </p>
+    `;
+
+  }
+
+
+  deposits.forEach(
+    (deposit, index) => {
+
+      html += `
+
+        <div class="admin-item">
+
+          <b>
+            ${deposit.id}
+          </b>
+
+          <br>
+
+          Amount:
+          ₹${deposit.amount}
+
+          <br>
+
+          UTR:
+          ${deposit.utr}
+
+          <br>
+
+          Status:
+          ${deposit.status}
+
+          <br>
+
+          <span class="small">
+            ${deposit.date}
+          </span>
+
+          <br><br>
+
+          ${
+            deposit.status === "Pending"
+            ?
+            `
+              <button
+                class="btn"
+                onclick="approveDeposit(${index})">
+
+                Approve Deposit
+
+              </button>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+      `;
+
+    }
+
+  );
+
+
+  html += `
+
+    <h3>
+      Orders
+    </h3>
+
+  `;
+
+
+  if (!orders.length) {
+
+    html += `
+      <p class="small">
+        No orders.
+      </p>
+    `;
+
+  }
+
+
+  orders.forEach(
+    (order, index) => {
+
+      html += `
+
+        <div class="admin-item">
+
+          <b>
+            ${order.id}
+          </b>
+
+          <br>
+
+          ${order.service}
+          —
+          ${order.package}
+
+          <br>
+
+          ₹${order.price}
+
+          <br>
+
+          Status:
+          ${order.status}
+
+          <br><br>
+
+          ${
+            order.status === "Pending"
+            ?
+            `
+              <button
+                class="btn"
+                onclick="completeOrder(${index})">
+
+                Mark Completed
+
+              </button>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+      `;
+
+    }
+
+  );
+
+
+  showModal(html);
+
+}
+
+
+/* =====================================================
+   APPROVE DEPOSIT
+===================================================== */
+
+function approveDeposit(index) {
+
+  const deposit =
+    deposits[index];
+
+
+  if (
+    deposit.status !==
+    "Pending"
+  ) {
+
+    return;
+
+  }
+
+
+  deposit.status =
+    "Approved";
+
+
+  balance +=
+    deposit.amount;
+
+
+  saveData();
+
+
+  renderAdmin();
+
+}
+
+
+/* =====================================================
+   COMPLETE ORDER
+===================================================== */
+
+function completeOrder(index) {
+
+  orders[index].status =
+    "Completed";
+
+
+  saveData();
+
+
+  renderAdmin();
+
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+function openMenu() {
+
+  showModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()">
+      X
+    </button>
+
+    <h2>
+      Digital Grow Menu
+    </h2>
+
+
+    <button
+      class="btn"
+      onclick="openAddFunds()">
+
+      💰 Add Funds
+
+    </button>
+
+    <br><br>
+
+
+    <button
+      class="btn"
+      onclick="openAdmin()">
+
+      🔐 Admin Panel
+
+    </button>
+
+    <br><br>
+
+
+    <button
+      class="btn"
+      onclick="showOrders()">
+
+      📦 My Orders
+
+    </button>
+
+    <br><br>
+
+
+    <p class="small">
+
+      Instagram:
+      @suraj._.nbn
+
+    </p>
+
+  `);
+
+}
+
+
+/* =====================================================
+   SHOW ORDERS
+===================================================== */
+
+function showOrders() {
+
+  showModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()">
+      X
+    </button>
+
+    <h2>
+      My Orders
+    </h2>
+
+    ${
+      orders.length
+      ?
+      orders.map(
+        order => `
+
+          <div class="order">
+
+            <b>
+              ${order.service}
+            </b>
+
+            <br>
+
+            Package:
+            ${order.package}
+
+            <br>
+
+            ₹${order.price}
+
+            <br><br>
+
+            <span class="status">
+              ${order.status}
+            </span>
+
+            <br><br>
+
+            Order ID:
+            ${order.id}
+
+          </div>
+
+        `
+      ).join("")
+      :
+      `
+        <p class="small">
+          No orders found.
+        </p>
+      `
+    }
+
+  `);
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function showModal(content) {
+
+  document.getElementById(
+    "modalContent"
+  ).innerHTML = content;
+
+
+  document.getElementById(
+    "modal"
+  ).classList.add("show");
+
+}
+
+
+function closeModal() {
+
+  document.getElementById(
+    "modal"
+  ).classList.remove("show");
+
+}
+
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+function scrollToOrder() {
+
+  document
+    .getElementById(
+      "instagramUrl"
+    )
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   START APP
+===================================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
